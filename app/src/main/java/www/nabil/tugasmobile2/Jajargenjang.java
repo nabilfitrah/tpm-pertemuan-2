@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Jajargenjang extends AppCompatActivity {
 
@@ -42,14 +43,18 @@ public class Jajargenjang extends AppCompatActivity {
         btnHasil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double alas =  Double.parseDouble(etAlas.getText().toString());
-                double tinggi = Double.parseDouble(etTinggi.getText().toString());
+                try {
+                    double alas =  Double.parseDouble(etAlas.getText().toString());
+                    double tinggi = Double.parseDouble(etTinggi.getText().toString());
 
-                double hasil = alas * tinggi;
+                    double hasil = alas * tinggi;
 
-                String sHasil = String.valueOf(hasil);
-                tvHasil.setText(sHasil);
-                sxHasil = hasil;
+                    String sHasil = String.valueOf(hasil);
+                    tvHasil.setText(sHasil);
+                    sxHasil = hasil;
+                }catch (NumberFormatException nfe) {
+                    Toast.makeText(getApplicationContext(), "Field Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
